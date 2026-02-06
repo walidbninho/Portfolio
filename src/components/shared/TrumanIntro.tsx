@@ -5,11 +5,8 @@ import { useState, useEffect } from "react";
 export default function TrumanIntro() {
   const [isVisible, setIsVisible] = useState(true);
 
-  // ID de votre vidéo (Changez-le ici si besoin)
-  // Scène Truman Show "Good Morning" fiable
-  const VIDEO_ID = "d-mx0eL2j2c"; 
-
   useEffect(() => {
+    // Bloque le scroll pendant l'intro
     if (isVisible) {
       document.body.style.overflow = "hidden";
     } else {
@@ -22,24 +19,24 @@ export default function TrumanIntro() {
   return (
     <div className="fixed inset-0 z-100 bg-black flex flex-col items-center justify-center animate-in fade-in duration-500">
       
-      {/* Conteneur Vidéo "Cinéma" */}
-      {/* overflow-hidden est CRUCIAL pour couper les bords de YouTube */}
+      {/* Conteneur Cinéma */}
       <div className="relative w-full max-w-5xl aspect-video rounded-none md:rounded-lg overflow-hidden shadow-2xl border border-white/10 bg-black">
         
-        {/* Le Wrapper qui désactive la souris et zoome */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none scale-[1.35]">
-          <iframe 
-            width="100%" 
-            height="100%" 
-            src={`https://www.youtube.com/embed/CjSzCuC7tOI?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${VIDEO_ID}&showinfo=0&rel=0&iv_load_policy=3&fs=0&disablekb=1`}
-            title="Intro Scene"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className="object-cover w-full h-full"
-          />
-        </div>
+        {/* LECTEUR NATIF (Plus de YouTube, plus d'erreurs) */}
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline // Important pour que ça marche sur iPhone/Mobile
+          className="object-cover w-full h-full"
+        >
+          {/* Assurez-vous d'avoir mis le fichier dans public/videos/intro.mp4 */}
+          <source src="/videos/intro.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-        {/* Overlay transparent pour empêcher le clic droit sur la vidéo */}
-        <div className="absolute inset-0 z-10" />
+        {/* Overlay transparent (optionnel, pour empêcher le clic droit) */}
+        <div className="absolute inset-0 z-10 pointer-events-none" />
       </div>
 
       {/* Bouton d'entrée */}
