@@ -26,7 +26,7 @@ export const Navbar = () => {
                 >
                     <div className="relative w-8 h-8">
                         <Image
-                            src="/logo.svg"
+                            src="/images/logo.svg"
                             alt="Logo"
                             fill
                             className="object-contain"

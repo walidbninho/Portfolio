@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 60">
+  <g transform="translate(40, 30) scale(0.15)">
+     <path d="M -20 120 L 0 200 L 20 120 Z" fill="#3b82f6"/>
+    <path d="M 0 -160 C 0 -160, 25 -90, 35 -40 L 160 80 L 160 120 L 50 80 L 25 120 L 0 100 L -25 120 L -50 80 L -160 120 L -160 80 L -35 -40 C -25 -90, 0 -160, 0 -160 Z" fill="#e4e4e7"/>
+  </g>
+
+  <text x="90" y="38" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="1">
+    WALID
+  </text>
+  
+  <rect x="195" y="15" width="2" height="25" fill="#3b82f6"/>
+
+  <text x="210" y="38" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="500" font-size="28" fill="#ffffff" letter-spacing="1">
+    AERO
+  </text>
+</svg>
