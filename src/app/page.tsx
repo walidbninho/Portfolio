@@ -61,12 +61,12 @@ export default function Home() {
         </div>
 
         {/* Profile Picture */}
-        <div className="w-full md:max-w-none max-w-[500px] aspect-square relative border border-border/50 bg-accent/10">
+        <div className="w-full max-w-[350px] aspect-square relative border border-border/50 bg-accent/10">
           <Image
             src={DATA.avatarUrl}
             alt={DATA.name}
             fill
-            className="object-cover"
+            className="object-contain"
             priority
           />
           {/* Tech/Industrial Overlay Detail */}
