@@ -47,14 +47,14 @@ interface ModelViewerProps {
 
 import { Component, ErrorInfo, ReactNode } from "react";
 
-class ErrorBoundary extends Component<{ children: ReactNode, fallback: ReactNode }, { hasError: boolean }> {
-    constructor(props: { children: ReactNode, fallback: ReactNode }) {
+class ErrorBoundary extends Component<{ children: ReactNode, fallback: (error: Error | null) => ReactNode }, { hasError: boolean, error: Error | null }> {
+    constructor(props: { children: ReactNode, fallback: (error: Error | null) => ReactNode }) {
         super(props);
-        this.state = { hasError: false };
+        this.state = { hasError: false, error: null };
     }
 
-    static getDerivedStateFromError(_: Error) {
-        return { hasError: true };
+    static getDerivedStateFromError(error: Error) {
+        return { hasError: true, error };
     }
 
     componentDidCatch(error: Error, info: ErrorInfo) {
@@ -63,7 +63,7 @@ class ErrorBoundary extends Component<{ children: ReactNode, fallback: ReactNode
 
     render() {
         if (this.state.hasError) {
-            return this.props.fallback;
+            return this.props.fallback(this.state.error);
         }
         return this.props.children;
     }
@@ -106,12 +106,15 @@ export const ModelViewer = ({ modelPath, poster }: ModelViewerProps) => {
     // Actual 3D Canvas (Lazy Loaded)
     return (
         <ErrorBoundary
-            fallback={
+            fallback={(error) => (
                 <div className="w-full h-full flex flex-col items-center justify-center bg-secondary/20 text-muted-foreground p-4 text-center">
                     <Box className="w-8 h-8 mb-2 opacity-50" />
                     <p className="font-mono text-sm">Failed to load 3D model.</p>
+                    <p className="text-xs text-red-500 mt-2 max-w-[200px] break-words">
+                        {error?.message || "Unknown error"}
+                    </p>
                 </div>
-            }
+            )}
         >
             <div className="w-full h-full min-h-[400px] relative bg-transparent rounded-sm border border-border/50 overflow-hidden">
                 <Canvas shadows dpr={[1, 2]} camera={{ fov: 50 }} gl={{ preserveDrawingBuffer: true, alpha: true }}>
