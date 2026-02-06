@@ -7,7 +7,6 @@ import { Container } from "@/components/shared/Container";
 import { TechMarquee } from "@/components/ui/TechMarquee";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ArrowRight } from "lucide-react";
-import TrumanIntro from "@/components/shared/TrumanIntro"; // <--- 1. IMPORT AJOUTÉ
 
 export default function Home() {
   // Filter Logic
@@ -31,9 +30,7 @@ export default function Home() {
 
   return (
     <Container className="py-12 md:py-24 space-y-32">
-      
-      {/* <--- 2. COMPOSANT AJOUTÉ ICI (Premier élément du Container) */}
-      <TrumanIntro /> 
+
 
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row gap-12 items-center justify-between">
