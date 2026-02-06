@@ -1,9 +1,9 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { useGLTF, Stage, OrbitControls, Html, useProgress, useAnimations, Environment } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
-import { Play, Loader2, Box } from "lucide-react";
+import { Play, Loader2, Box, Camera } from "lucide-react";
 import * as THREE from "three";
 
 // Draco Decoder Path (CDN)
@@ -45,6 +45,30 @@ interface ModelViewerProps {
     poster?: string; // Image to show before loading
 }
 
+import { Component, ErrorInfo, ReactNode } from "react";
+
+class ErrorBoundary extends Component<{ children: ReactNode, fallback: ReactNode }, { hasError: boolean }> {
+    constructor(props: { children: ReactNode, fallback: ReactNode }) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(_: Error) {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error: Error, info: ErrorInfo) {
+        console.error("3D Model Error:", error, info);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return this.props.fallback;
+        }
+        return this.props.children;
+    }
+}
+
 export const ModelViewer = ({ modelPath, poster }: ModelViewerProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -81,31 +105,40 @@ export const ModelViewer = ({ modelPath, poster }: ModelViewerProps) => {
 
     // Actual 3D Canvas (Lazy Loaded)
     return (
-        <div className="w-full h-full min-h-[400px] relative bg-transparent rounded-sm border border-border/50 overflow-hidden">
-            <Canvas shadows dpr={[1, 2]} camera={{ fov: 50 }} gl={{ preserveDrawingBuffer: true, alpha: true }}>
-                <Suspense fallback={<Loader />}>
-                    <Stage intensity={0.5} shadows={{ type: 'contact', opacity: 0.7, blur: 2 }}>
-                        <Model url={modelPath} />
-                    </Stage>
-                    <Environment preset="city" />
-                    <OrbitControls
-                        autoRotate
-                        autoRotateSpeed={0.5} // Slow rotation
-                        makeDefault
-                        minPolarAngle={0}
-                        maxPolarAngle={Math.PI / 1.5}
-                    />
-                    {process.env.NODE_ENV === 'development' && <SnapshotButton />}
-                </Suspense>
-            </Canvas>
+        <ErrorBoundary
+            fallback={
+                <div className="w-full h-full flex flex-col items-center justify-center bg-secondary/20 text-muted-foreground p-4 text-center">
+                    <Box className="w-8 h-8 mb-2 opacity-50" />
+                    <p className="font-mono text-sm">Failed to load 3D model.</p>
+                </div>
+            }
+        >
+            <div className="w-full h-full min-h-[400px] relative bg-transparent rounded-sm border border-border/50 overflow-hidden">
+                <Canvas shadows dpr={[1, 2]} camera={{ fov: 50 }} gl={{ preserveDrawingBuffer: true, alpha: true }}>
+                    <Suspense fallback={<Loader />}>
+                        <Stage intensity={0.5} shadows={{ type: 'contact', opacity: 0.7, blur: 2 }}>
+                            <Model url={modelPath} />
+                        </Stage>
+                        <Environment preset="city" />
+                        <OrbitControls
+                            autoRotate
+                            autoRotateSpeed={0.5} // Slow rotation
+                            makeDefault
+                            minPolarAngle={0}
+                            maxPolarAngle={Math.PI / 1.5}
+                        />
+                        {process.env.NODE_ENV === 'development' && <SnapshotButton />}
+                    </Suspense>
+                </Canvas>
 
-            <div className="absolute bottom-4 left-4 pointer-events-none">
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[10px] font-mono uppercase text-muted-foreground bg-background/50 px-1">Interactive Mode Active</span>
+                <div className="absolute bottom-4 left-4 pointer-events-none">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-[10px] font-mono uppercase text-muted-foreground bg-background/50 px-1">Interactive Mode Active</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ErrorBoundary>
     );
 };
 
@@ -136,8 +169,5 @@ function SnapshotButton() {
     );
 }
 
-import { Camera } from "lucide-react";
-import { useThree } from "@react-three/fiber";
-
 // Preload is optional for the facade pattern (we want lazy load), but good practice if expected to be used often.
-// useGLTF.preload(url, DRACO_URL); 
+// useGLTF.preload(url, DRACO_URL);

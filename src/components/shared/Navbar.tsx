@@ -44,7 +44,7 @@ export const Navbar = () => {
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                "text-sm font-medium transition-colors hover:text-primary",
+                                "text-base md:text-lg font-medium transition-colors hover:text-primary",
                                 pathname === link.href
                                     ? "text-primary border-b-2 border-primary pb-0.5"
                                     : "text-muted-foreground"
@@ -55,6 +55,13 @@ export const Navbar = () => {
                     ))}
                     <div className="w-px h-6 bg-border mx-2" />
                     <ThemeToggle />
+                    <a
+                        href="/resume.pdf"
+                        download
+                        className="hidden md:inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                    >
+                        Download CV
+                    </a>
                 </div>
             </Container>
         </nav >
