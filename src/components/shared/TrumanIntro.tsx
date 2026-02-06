@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 
 export default function TrumanIntro() {
   const [isVisible, setIsVisible] = useState(true);
+  const [isMuted, setIsMuted] = useState(true); // Doit démarrer 'true' pour l'autoplay
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Bloque le scroll pendant l'intro
     if (isVisible) {
       document.body.style.overflow = "hidden";
     } else {
@@ -14,28 +16,44 @@ export default function TrumanIntro() {
     }
   }, [isVisible]);
 
+  const toggleSound = () => {
+    if (videoRef.current) {
+      // Inverse l'état du son
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-100 bg-black flex flex-col items-center justify-center animate-in fade-in duration-500">
+    <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-500">
       
-      {/* Conteneur Cinéma */}
-      <div className="relative w-full max-w-5xl aspect-video rounded-none md:rounded-lg overflow-hidden shadow-2xl border border-white/10 bg-black">
+      <div className="relative w-full max-w-5xl aspect-video rounded-none md:rounded-lg overflow-hidden shadow-2xl border border-white/10 bg-black group">
         
-        {/* LECTEUR NATIF (Plus de YouTube, plus d'erreurs) */}
+        {/* LECTEUR VIDÉO */}
         <video 
+          ref={videoRef}
           autoPlay 
-          muted 
+          muted={isMuted} // Contrôlé par l'état React
           loop 
-          playsInline // Important pour que ça marche sur iPhone/Mobile
+          playsInline 
           className="object-cover w-full h-full"
         >
-          {/* Assurez-vous d'avoir mis le fichier dans public/videos/intro.mp4 */}
           <source src="/videos/intro.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
-        {/* Overlay transparent (optionnel, pour empêcher le clic droit) */}
+        {/* BOUTON SON (Apparaît au survol ou si muet) */}
+        <button
+          onClick={toggleSound}
+          className="absolute bottom-6 right-6 p-3 bg-black/50 hover:bg-white/20 backdrop-blur-sm rounded-full text-white transition-all transform hover:scale-110 border border-white/20 z-30"
+          title={isMuted ? "Activer le son" : "Couper le son"}
+        >
+          {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+        </button>
+
+        {/* Overlay pour empêcher le clic droit */}
         <div className="absolute inset-0 z-10 pointer-events-none" />
       </div>
 
@@ -48,7 +66,7 @@ export default function TrumanIntro() {
       </button>
 
       <p className="mt-4 text-white/30 text-[10px] font-mono uppercase tracking-widest">
-        Cinema Mode Initiated
+        Cinema Mode Initiated • Click speaker for sound
       </p>
     </div>
   );
