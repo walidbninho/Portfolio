@@ -119,10 +119,11 @@ export const ModelViewer = ({ modelPath, poster }: ModelViewerProps) => {
             <div className="w-full h-full min-h-[400px] relative bg-transparent rounded-sm border border-border/50 overflow-hidden">
                 <Canvas shadows dpr={[1, 2]} camera={{ fov: 50 }} gl={{ preserveDrawingBuffer: true, alpha: true }}>
                     <Suspense fallback={<Loader />}>
-                        <Stage intensity={0.5} shadows={{ type: 'contact', opacity: 0.7, blur: 2 }}>
+                        <Stage intensity={0.5} shadows={{ type: 'contact', opacity: 0.7, blur: 2 }} environment={null}>
                             <Model url={modelPath} />
                         </Stage>
-                        <Environment preset="city" />
+                        <directionalLight position={[5, 5, 5]} intensity={1} />
+                        <ambientLight intensity={0.5} />
                         <OrbitControls
                             autoRotate
                             autoRotateSpeed={0.5} // Slow rotation
