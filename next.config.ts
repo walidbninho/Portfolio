@@ -1,11 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: any = {
-  
   typescript: {
     ignoreBuildErrors: true,
   },
-
   images: {
     remotePatterns: [
       {
@@ -17,7 +15,6 @@ const nextConfig: any = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-
   async headers() {
     return [
       {
@@ -37,6 +34,7 @@ const nextConfig: any = {
           },
           {
             key: 'Content-Security-Policy',
+            // ATTENTION : Pas de commentaires dans cette chaîne de caractères !
             value: `
                 default-src 'self'; 
                 script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com; 
@@ -44,9 +42,7 @@ const nextConfig: any = {
                 img-src 'self' blob: data: https://cdn.simpleicons.org; 
                 font-src 'self' data: https://fonts.gstatic.com; 
                 connect-src 'self' https://www.gstatic.com https://cdn.simpleicons.org; 
-                
-                /* --- CHANGEMENT ICI : On autorise YouTube --- */
-                frame-src 'self' https://www.youtube.com;
+                frame-src 'self' https://www.youtube.com https://youtube.com;
             `.replace(/\s{2,}/g, ' ').trim()
           }
         ],
