@@ -1,17 +1,12 @@
 import type { NextConfig } from "next";
 
-// REMARQUEZ LE CHANGE ICI : on met ': any' au lieu de ': NextConfig'
-// C'est l'astuce qui force Vercel à tout accepter sans broncher.
 const nextConfig: any = {
-
-  /* --- IGNORER TOUTES LES ERREURS (Type & Lint) --- */
+  
+  // On garde UNIQUEMENT typescript ici. 
+  // La partie 'eslint' a été retirée car elle est interdite dans Next.js 16.
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  /* ------------------------------------------------ */
 
   images: {
     remotePatterns: [
