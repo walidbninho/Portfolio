@@ -26,52 +26,56 @@ export default function TrumanIntro() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-500 p-4">
+    // Z-INDEX 100 : Pour être sûr de passer au-dessus de la Navbar
+    <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-500">
       
-      {/* Conteneur principal */}
-      {/* J'ai retiré 'aspect-video' strict pour laisser la vidéo définir sa taille naturelle si besoin, 
-          mais 'max-h-[80vh]' empêche que ça dépasse de l'écran en hauteur */}
-      <div className="relative w-full max-w-5xl aspect-video rounded-lg overflow-hidden shadow-2xl border border-white/10 bg-black group">
+      {/* CONTENEUR VIDÉO PLEIN ÉCRAN 
+          w-full h-full : Prend tout l'espace disponible
+      */}
+      <div className="relative w-full h-full bg-black group">
         
-        {/* LECTEUR VIDÉO */}
-        {/* J'ai retiré 'scale-[1.35]' -> La vidéo est maintenant entière */}
+        {/* LECTEUR VIDÉO 
+            object-contain : La vidéo s'agrandit au max pour toucher les bords 
+            sans couper l'image (pas de crop).
+        */}
         <video 
           ref={videoRef}
           autoPlay 
           muted={isMuted}
           loop 
           playsInline 
-          className="object-contain w-full h-full" 
+          className="w-full h-full object-contain"
         >
-          {/* object-contain = On voit TOUTE la vidéo, quitte à avoir de légères bandes noires si le format n'est pas pile 16/9 */}
           <source src="/videos/intro.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
-        {/* BOUTON SON */}
+        {/* BOUTON SON (Flottant en bas à droite) */}
         <button
           onClick={toggleSound}
-          className="absolute bottom-6 right-6 p-3 bg-black/50 hover:bg-white/20 backdrop-blur-sm rounded-full text-white transition-all transform hover:scale-110 border border-white/20 z-30"
+          className="absolute bottom-8 right-8 p-4 bg-black/50 hover:bg-white/20 backdrop-blur-md rounded-full text-white transition-all transform hover:scale-110 border border-white/10 z-30"
           title={isMuted ? "Activer le son" : "Couper le son"}
         >
-          {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+          {isMuted ? <VolumeX size={32} /> : <Volume2 size={32} />}
         </button>
 
-        {/* Overlay pour empêcher le clic droit sur la vidéo */}
+        {/* BOUTON ENTER (Flottant en bas au centre) */}
+        <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center z-20 gap-4">
+          <button
+            onClick={() => setIsVisible(false)}
+            className="px-10 py-4 bg-white text-black font-bold uppercase tracking-[0.2em] hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95 rounded-sm"
+          >
+            Enter The Real World
+          </button>
+          
+          <p className="text-white/40 text-[10px] font-mono uppercase tracking-widest">
+            Cinema Mode • Click speaker for sound
+          </p>
+        </div>
+
+        {/* Overlay protection */}
         <div className="absolute inset-0 z-10 pointer-events-none" />
       </div>
-
-      {/* Bouton d'entrée */}
-      <button
-        onClick={() => setIsVisible(false)}
-        className="mt-8 px-8 py-3 bg-white text-black font-bold uppercase tracking-widest hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95 rounded-sm flex items-center gap-2 z-20"
-      >
-        Enter The Real World
-      </button>
-
-      <p className="mt-4 text-white/30 text-[10px] font-mono uppercase tracking-widest">
-        Cinema Mode Initiated • Click speaker for sound
-      </p>
     </div>
   );
 }
