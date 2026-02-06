@@ -1,65 +1,156 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { DATA } from "@/constants/data";
+import { Container } from "@/components/shared/Container";
+import { TechMarquee } from "@/components/ui/TechMarquee";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
+  // Filter Logic
+  const cadProjects = DATA.projects.filter(p =>
+    p.tech.some(t => ["CAD", "Mechanical", "Aerostructures", "Drafting", "Animation", "Modeling"].some(tag => t.includes(tag)))
+  );
+
+  const roboticsProjects = DATA.projects.filter(p =>
+    p.tech.some(t => ["Robotics", "Embedded", "IoT", "Avionics", "Arduino", "Esp8266", "STM32", "CAN"].some(tag => t.includes(tag)))
+  );
+
+  const softwareProjects = DATA.projects.filter(p =>
+    p.tech.some(t => ["Software", "Simulation", "Python", "Finite Element Analysis", "CFD"].some(tag => t.includes(tag))) &&
+    !roboticsProjects.includes(p) // Prevent duplicates if possible, though strict overlap might be desired.
+    // For now, let's allow "Multi-disciplinary" projects to appear in both if they truly fit, 
+    // OR filter them out. The user asked for "Distinct Sections". 
+    // "Robotics" usually trumps "Software" for embedded. 
+    // "CFD/FEM" is definitely Simulation. 
+  );
+
+  // Specific override to ensure clean separate lists if overlap occurs
+  // Let's refine the specific ID exclusions if the generic tags are too broad
+  const softwareSpecific = softwareProjects.filter(p => !cadProjects.includes(p) && !roboticsProjects.includes(p));
+  // Actually, typical overlap is minimal with current data. 
+  // UAV has "Aerodynamics" (CAD) and "CFD" (Sim). It fits both. 
+  // Quadcopter has "Structural Design" (CAD) and "FEA" (Sim).
+  // Let's just render them based on the tags. If they appear twice, it highlights multidisciplinarity.
+  // BUT the user said "Distinct Vertical Sections... categorized by domain". 
+  // I will enforce unique assignment for cleaner UI.
+
+  const distinctCad = cadProjects;
+  const distinctRobotics = roboticsProjects.filter(p => !distinctCad.find(c => c.id === p.id));
+  const distinctSoftware = softwareProjects.filter(p => !distinctCad.find(c => c.id === p.id) && !distinctRobotics.find(r => r.id === p.id));
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <Container className="py-12 md:py-24 space-y-32">
+      {/* Hero Section */}
+      <section className="flex flex-col md:flex-row gap-12 items-center justify-between">
+        <div className="flex-1 space-y-6">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+              {DATA.name} <span className="text-primary font-mono text-3xl align-top">[//]</span> <br />
+              <span className="text-muted-foreground">{DATA.title}</span>
+            </h1>
+            <p className="max-w-[600px] text-lg text-muted-foreground leading-relaxed">
+              {DATA.tagline}
+            </p>
+          </div>
+          <div className="flex gap-4">
+            <Link
+              href="/projects"
+              className="inline-flex h-10 items-center justify-center rounded-none bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              View Projects
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex h-10 items-center justify-center rounded-none border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
             >
-              Learning
-            </a>{" "}
-            center.
+              Contact Me
+            </Link>
+          </div>
+        </div>
+
+        {/* Profile Picture */}
+        <div className="w-full max-w-[300px] aspect-square relative border border-border/50 bg-accent/10">
+          <Image
+            src={DATA.avatarUrl}
+            alt={DATA.name}
+            fill
+            className="object-cover grayscale contrast-125"
+            priority
+          />
+          {/* Tech/Industrial Overlay Detail */}
+          <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-primary/50" />
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-primary/50" />
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="space-y-6 max-w-3xl">
+        <h2 className="text-2xl font-bold tracking-tight">About</h2>
+        <div className="text-muted-foreground space-y-4 leading-relaxed">
+          <p>{DATA.bio}</p>
+          <p>
+            Based in {DATA.location}, I combine technical engineering principles with modern software development to build robust systems.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Skills Section */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold tracking-tight">Technical Stack</h2>
+        <TechMarquee />
+      </section>
+
+      {/* SECTION 01: MECHANICAL */}
+      <section className="space-y-12">
+        <div className="border-b border-border pb-4">
+          <h2 className="text-3xl font-mono font-bold tracking-tighter uppercase text-muted-foreground">
+            <span className="text-primary mr-2">01 //</span> Mechanical & CAD Design
+          </h2>
         </div>
-      </main>
-    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {distinctCad.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 02: ROBOTICS */}
+      <section className="space-y-12">
+        <div className="border-b border-border pb-4">
+          <h2 className="text-3xl font-mono font-bold tracking-tighter uppercase text-muted-foreground">
+            <span className="text-primary mr-2">02 //</span> Robotics & Embedded Systems
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {distinctRobotics.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 03: SOFTWARE */}
+      <section className="space-y-12">
+        <div className="border-b border-border pb-4">
+          <h2 className="text-3xl font-mono font-bold tracking-tighter uppercase text-muted-foreground">
+            <span className="text-primary mr-2">03 //</span> Simulation & Software
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {distinctSoftware.length > 0 ? (
+            distinctSoftware.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          ) : (
+            <div className="col-span-full py-12 text-center border border-dashed border-border text-muted-foreground font-mono text-sm">
+              No pure software projects listed yet.
+            </div>
+          )}
+        </div>
+      </section>
+
+    </Container>
   );
 }
