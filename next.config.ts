@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: any = {
   
-  // On garde UNIQUEMENT typescript ici. 
-  // La partie 'eslint' a été retirée car elle est interdite dans Next.js 16.
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -46,7 +44,9 @@ const nextConfig: any = {
                 img-src 'self' blob: data: https://cdn.simpleicons.org; 
                 font-src 'self' data: https://fonts.gstatic.com; 
                 connect-src 'self' https://www.gstatic.com https://cdn.simpleicons.org; 
-                frame-src 'self';
+                
+                /* --- CHANGEMENT ICI : On autorise YouTube --- */
+                frame-src 'self' https://www.youtube.com;
             `.replace(/\s{2,}/g, ' ').trim()
           }
         ],
