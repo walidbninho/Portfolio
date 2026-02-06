@@ -7,6 +7,7 @@ import { Container } from "@/components/shared/Container";
 import { TechMarquee } from "@/components/ui/TechMarquee";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ArrowRight } from "lucide-react";
+import TrumanIntro from "@/components/shared/TrumanIntro"; // <--- 1. IMPORT AJOUTÉ
 
 export default function Home() {
   // Filter Logic
@@ -20,29 +21,20 @@ export default function Home() {
 
   const softwareProjects = DATA.projects.filter(p =>
     p.tech.some(t => ["Software", "Simulation", "Python", "Finite Element Analysis", "CFD"].some(tag => t.includes(tag))) &&
-    !roboticsProjects.includes(p) // Prevent duplicates if possible, though strict overlap might be desired.
-    // For now, let's allow "Multi-disciplinary" projects to appear in both if they truly fit, 
-    // OR filter them out. The user asked for "Distinct Sections". 
-    // "Robotics" usually trumps "Software" for embedded. 
-    // "CFD/FEM" is definitely Simulation. 
+    !roboticsProjects.includes(p) 
   );
 
   // Specific override to ensure clean separate lists if overlap occurs
-  // Let's refine the specific ID exclusions if the generic tags are too broad
-  const softwareSpecific = softwareProjects.filter(p => !cadProjects.includes(p) && !roboticsProjects.includes(p));
-  // Actually, typical overlap is minimal with current data. 
-  // UAV has "Aerodynamics" (CAD) and "CFD" (Sim). It fits both. 
-  // Quadcopter has "Structural Design" (CAD) and "FEA" (Sim).
-  // Let's just render them based on the tags. If they appear twice, it highlights multidisciplinarity.
-  // BUT the user said "Distinct Vertical Sections... categorized by domain". 
-  // I will enforce unique assignment for cleaner UI.
-
   const distinctCad = cadProjects;
   const distinctRobotics = roboticsProjects.filter(p => !distinctCad.find(c => c.id === p.id));
   const distinctSoftware = softwareProjects.filter(p => !distinctCad.find(c => c.id === p.id) && !distinctRobotics.find(r => r.id === p.id));
 
   return (
     <Container className="py-12 md:py-24 space-y-32">
+      
+      {/* <--- 2. COMPOSANT AJOUTÉ ICI (Premier élément du Container) */}
+      <TrumanIntro /> 
+
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row gap-12 items-center justify-between">
         <div className="flex-1 space-y-6">
