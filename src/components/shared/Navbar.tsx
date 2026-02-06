@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Container } from "./Container";
 import { DATA } from "@/constants/data";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/shared/Logo";
 
 export const Navbar = () => {
     const pathname = usePathname();
@@ -24,18 +25,7 @@ export const Navbar = () => {
                     href="/"
                     className="flex items-center gap-2 group"
                 >
-                    <div className="relative w-8 h-8">
-                        <Image
-                            src="/images/logo.svg"
-                            alt="Logo"
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
-                    <span className="font-mono font-bold text-xl tracking-tighter group-hover:tracking-widest transition-all duration-300">
-                        WALID <span className="text-primary">[//]</span> AERO
-                    </span>
+                    <Logo className="h-10 w-auto text-foreground transition-all duration-300 group-hover:opacity-80" />
                 </Link>
 
                 <div className="flex gap-6 md:gap-8 items-center">

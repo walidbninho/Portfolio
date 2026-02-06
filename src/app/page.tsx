@@ -20,7 +20,7 @@ export default function Home() {
 
   const softwareProjects = DATA.projects.filter(p =>
     p.tech.some(t => ["Software", "Simulation", "Python", "Finite Element Analysis", "CFD"].some(tag => t.includes(tag))) &&
-    !roboticsProjects.includes(p) 
+    !roboticsProjects.includes(p)
   );
 
   // Specific override to ensure clean separate lists if overlap occurs
@@ -61,17 +61,17 @@ export default function Home() {
         </div>
 
         {/* Profile Picture */}
-        <div className="w-full max-w-[300px] aspect-square relative border border-border/50 bg-accent/10">
+        <div className="w-full md:max-w-none max-w-[500px] aspect-square relative border border-border/50 bg-accent/10">
           <Image
             src={DATA.avatarUrl}
             alt={DATA.name}
             fill
-            className="object-cover grayscale contrast-125"
+            className="object-cover"
             priority
           />
           {/* Tech/Industrial Overlay Detail */}
-          <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-primary/50" />
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-primary/50" />
+          <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/50" />
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/50" />
         </div>
       </section>
 

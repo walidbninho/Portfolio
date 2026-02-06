@@ -110,7 +110,7 @@ export const ModelViewer = ({ modelPath, poster }: ModelViewerProps) => {
                 <div className="w-full h-full flex flex-col items-center justify-center bg-secondary/20 text-muted-foreground p-4 text-center">
                     <Box className="w-8 h-8 mb-2 opacity-50" />
                     <p className="font-mono text-sm">Failed to load 3D model.</p>
-                    <p className="text-xs text-red-500 mt-2 max-w-[200px] break-words">
+                    <p className="text-xs text-red-500 mt-2 max-w-[200px]break-words ">
                         {error?.message || "Unknown error"}
                     </p>
                 </div>
