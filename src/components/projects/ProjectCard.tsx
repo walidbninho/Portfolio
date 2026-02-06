@@ -16,7 +16,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
     return (
         <Link href={project.link} className="group block space-y-4">
             {/* Thumbnail Container */}
-            <div className="aspect-[4/3] bg-secondary/50 relative overflow-hidden border border-transparent group-hover:border-border/50 transition-all duration-500 rounded-sm">
+            <div className="aspect-4/3 bg-secondary/50 relative overflow-hidden border border-transparent group-hover:border-border/50 transition-all duration-500 rounded-sm">
 
                 {/* Tech Pattern for Contain Mode */}
                 {fit === 'contain' && !imageError && (
