@@ -79,10 +79,9 @@ export default function Home() {
       <section className="space-y-6 max-w-3xl">
         <h2 className="text-2xl font-bold tracking-tight">About</h2>
         <div className="text-muted-foreground space-y-4 leading-relaxed">
-          <p>{DATA.bio}</p>
-          <p>
-            Based in {DATA.location}, I combine technical engineering principles with modern software development to build robust systems.
-          </p>
+          <p>I am an aeronautical engineering student specializing in embedded systems, driven by the challenge of making complex machines both fly and think. Based in Berrechid, Morocco, I operate at the exact intersection of mechanical design and software architecture.</p>
+          <p>My expertise lies in bridging the gap between physical hardware and digital intelligence. On any given day, you might find me designing complex kinematic assemblies in CATIA, simulating flight dynamics, writing real-time C++ firmware for microcontrollers, or using Python and modern web technologies to build intuitive telemetry dashboards. I don't just want to build parts; I want to own the entire system loop.</p>
+          <p>Looking forward, my goal is to engineer the next generation of autonomous aerospace vehicles. I am eager to bring my blend of structural engineering principles and modern software development to a forward-thinking team that is pushing the boundaries of aviation, robotics, and intelligent systems.</p>
         </div>
       </section>
 

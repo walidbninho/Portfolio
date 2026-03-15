@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { DATA } from "@/constants/data";
-import Image from "next/image";
 
 export function TechMarquee() {
     // Duplicate the stack to ensure seamless loop
@@ -18,11 +17,10 @@ export function TechMarquee() {
                         title={tech.name}
                     >
                         {/* Always Original Brand Color */}
-                        <Image
+                        <img
                             src={tech.path || `https://cdn.simpleicons.org/${tech.slug}`}
                             alt={tech.name}
-                            fill
-                            className="object-contain"
+                            className="h-full w-full object-contain"
                             loading="lazy"
                         />
                     </div>

@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://walid-aero.me'), // Replace with actual domain
+  metadataBase: new URL('https://www.walid-aero.tech'),
   title: {
     default: "Walid | Aerospace Engineer & Embedded Systems",
     template: "%s | Walid Aero"
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://walid-aero.me",
+    url: "https://www.walid-aero.tech",
     title: "Walid - Aerospace & Embedded Engineer",
     description: "Portfolio of high-performance avionics, mechanical design, and embedded systems.",
     siteName: "Walid Aerospace Portfolio",
@@ -81,14 +81,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
+                "@type": "Person",
               name: "Walid",
-              url: "https://walid-aero.me",
+              url: "https://www.walid-aero.tech/",
               jobTitle: "Aerospace Engineer",
               alumniOf: "National School of Applied Sciences (ENSA)",
               sameAs: [
                 "https://github.com/walidbninho",
-                "https://linkedin.com/in/"
+                "https://www.linkedin.com/in/walid-boulhit/"
               ]
             }),
           }}

@@ -15,7 +15,7 @@ export const DATA = {
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/", // Ajoutez votre vrai lien ici
+      url: "https://www.linkedin.com/in/walid-boulhit/",
       icon: Linkedin,
     },
     {
