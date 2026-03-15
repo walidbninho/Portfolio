@@ -1,30 +1,26 @@
-import { Metadata, Route } from 'next';
+import { MetadataRoute } from 'next';
 
-export default function sitemap(): Metadata['sitemap'] { // Actually standard return type is MetadataRoute.Sitemap
-    return [
-        {
-            url: 'https://walid-aero.me',
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 1,
-        },
-        {
-            url: 'https://walid-aero.me/resume',
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: 'https://walid-aero.me/projects',
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.9,
-        },
-        {
-            url: 'https://walid-aero.me/contact',
-            lastModified: new Date(),
-            changeFrequency: 'yearly',
-            priority: 0.5,
-        },
-    ];
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://www.walid-aero.tech';
+
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/resume`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+  ];
 }

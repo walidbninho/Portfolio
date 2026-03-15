@@ -28,7 +28,8 @@ export const metadata: Metadata = {
     "Aerospace Engineer",
     "Embedded Systems",
     "STM32",
-    "CATIA",
+    "CATIA V5",
+    "Berrechid",
     "Robotics",
     "Morocco",
     "Portfolio",
@@ -60,9 +61,9 @@ export const metadata: Metadata = {
     images: ["/opengraph-image.png"],
   },
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "/icon.png",
+    shortcut: "/shortcut-icon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
