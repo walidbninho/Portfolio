@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     default: "Walid | Aerospace Engineer & Embedded Systems",
     template: "%s | Walid Aero"
   },
-  description: "Aeronautical engineering portfolio. Bridging mechanical design (CATIA V5) and embedded software (C++/Python) to architect intelligent aerospace systems.",
+  description: "ENSAB Aeronautical Engineering portfolio. Showcasing expertise in embedded systems (STM32, C++), 3D CAD surfacing (CATIA V5), and data analysis (Python).",
   keywords: [
     "Aerospace Engineer",
     "Embedded Systems",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.walid-aero.tech",
     title: "Walid - Aerospace & Embedded Engineer",
-    description: "Aeronautical engineering portfolio. Bridging mechanical design (CATIA V5) and embedded software (C++/Python) to architect intelligent aerospace systems.",
+    description: "ENSAB Aeronautical Engineering portfolio. Showcasing expertise in embedded systems (STM32, C++), 3D CAD surfacing (CATIA V5), and data analysis (Python).",
     siteName: "Walid Aerospace Portfolio",
     images: [
       {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Walid - Aerospace & Embedded Engineer",
-    description: "Aeronautical engineering portfolio. Bridging mechanical design (CATIA V5) and embedded software (C++/Python) to architect intelligent aerospace systems.",
+    description: "ENSAB Aeronautical Engineering portfolio. Showcasing expertise in embedded systems (STM32, C++), 3D CAD surfacing (CATIA V5), and data analysis (Python).",
     images: ["/opengraph-image.png"],
   },
   icons: {
