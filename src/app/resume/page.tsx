@@ -50,7 +50,7 @@ export default function ResumePage() {
             01 // Profile
           </h2>
           <p className="text-base md:text-lg leading-relaxed text-foreground/90 max-w-2xl">
-            {DATA.bio}
+            I am an aeronautical engineering student specializing in embedded systems, based in Berrechid, Morocco. My passion lies at the exact intersection of mechanical design and software development—where physical structures meet digital intelligence. My current technical focus spans the entire engineering spectrum. On the hardware side, I design advanced aerospace surfaces and simulate complex kinematic assemblies using CATIA V5. On the software side, I leverage Python and C/C++ to develop numerical solvers for thermal analysis and process engineering data. Looking forward, my goal is to architect the embedded systems that will drive next-generation autonomous vehicles.
           </p>
         </section>
 
@@ -86,36 +86,71 @@ export default function ResumePage() {
           </h2>
           
           <div className="space-y-10">
-            {/* On map directement les projets de DATA */}
-            {DATA.projects.map((project) => (
-              <div key={project.id} className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8 group">
-                <div className="text-sm font-mono text-muted-foreground pt-1">
-                  {project.year}
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-lg font-bold group-hover:underline decoration-1 underline-offset-4">
-                      {project.title}
-                    </h3>
-                    {project.link && (
-                      <Link href={project.link} className="text-muted-foreground hover:text-foreground">
-                        <ArrowUpRight size={14} />
-                      </Link>
-                    )}
-                  </div>
-                  <p className="text-sm text-foreground/80 leading-relaxed mb-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
-                      <span key={t} className="text-xs font-mono text-muted-foreground border border-border px-1.5 py-0.5 rounded-none">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+            {/* Project 1 */}
+            <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8 group">
+              <div className="text-sm font-mono text-muted-foreground pt-1">
+                Jan 2026 - Mar 2026
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-1">
+                  Boeing 737-9 MAX Surface Modeling
+                </h3>
+                <p className="text-sm text-foreground/80 leading-relaxed mb-2">
+                  Advanced Surfacing and Assembly Management. Full 3D modeling of the fuselage and wings using Generative Shape Design (GSD) to ensure aerodynamic continuity. Managed a large-scale assembly hierarchy, integrating landing gear and empennage structures. Reverse-engineered structural components to validate geometric accuracy.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Catia V5", "GSD", "Assembly", "Aerospace Design"].map((t) => (
+                    <span key={t} className="text-xs font-mono text-muted-foreground border border-border px-1.5 py-0.5 rounded-none">
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Project 2 */}
+            <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8 group">
+              <div className="text-sm font-mono text-muted-foreground pt-1">
+                Jan 2026
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-1">
+                  Radial Engine & V8 Mechanism Design
+                </h3>
+                <p className="text-sm text-foreground/80 leading-relaxed mb-2">
+                  Detailed parametric modeling of engine components using Part Design. Simulated the combustion cycle movement using DMU Kinematics to detect collisions and validate clearance. Generated 2D technical drawings with GD&T standards.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Catia V5", "Part Design", "DMU Kinematics", "Drafting"].map((t) => (
+                    <span key={t} className="text-xs font-mono text-muted-foreground border border-border px-1.5 py-0.5 rounded-none">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Project 3 */}
+            <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8 group">
+              <div className="text-sm font-mono text-muted-foreground pt-1">
+                Nov 2025
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-1">
+                  Thermal Dissipation Analysis
+                </h3>
+                <p className="text-sm text-foreground/80 leading-relaxed mb-2">
+                  Developed a numerical solver to model heat transfer (Conduction/Convection) in engine cooling fins. Simulated steady-state temperature distribution across cylindrical geometries using Fourier's Law and visualized thermal gradients to optimize material selection.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Python", "Thermodynamics", "Numerical Methods"].map((t) => (
+                    <span key={t} className="text-xs font-mono text-muted-foreground border border-border px-1.5 py-0.5 rounded-none">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
