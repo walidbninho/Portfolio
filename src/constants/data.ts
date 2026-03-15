@@ -6,7 +6,7 @@ export const DATA = {
   tagline: "I build the nervous systems of autonomous flight vehicles.",
   bio: "I am an aerospace engineer standing at the intersection of mechanical design and embedded software. My expertise isn't just in making things fly—it's in giving them the intelligence to do so autonomously. From designing complex kinematic assemblies in CATIA to writing real-time C++ firmware for STM32 flight controllers, I bridge the gap between hardware and software. I don't just solve problems; I architect systems that perform under pressure.",
   avatarUrl: "/images/profile.png",
-  location: "Berrechid, Morocco",
+  location: "Casablanca, Morocco",
   socials: [
     {
       name: "GitHub",

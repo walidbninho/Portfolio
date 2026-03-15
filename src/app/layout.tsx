@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     default: "Walid | Aerospace Engineer & Embedded Systems",
     template: "%s | Walid Aero"
   },
-  description: "Portfolio of an Aerospace Engineering Student at ENSAB. Specializing in Embedded Systems (STM32), CAD Design (CATIA), and Robotics.",
+  description: "Aeronautical engineering portfolio. Bridging mechanical design (CATIA V5) and embedded software (C++/Python) to architect intelligent aerospace systems.",
   keywords: [
     "Aerospace Engineer",
     "Embedded Systems",
     "STM32",
     "CATIA V5",
-    "Berrechid",
+    "Casablanca",
     "Robotics",
     "Morocco",
     "Portfolio",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.walid-aero.tech",
     title: "Walid - Aerospace & Embedded Engineer",
-    description: "Portfolio of high-performance avionics, mechanical design, and embedded systems.",
+    description: "Aeronautical engineering portfolio. Bridging mechanical design (CATIA V5) and embedded software (C++/Python) to architect intelligent aerospace systems.",
     siteName: "Walid Aerospace Portfolio",
     images: [
       {
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Walid - Aerospace & Embedded Engineer",
-    description: "Portfolio of high-performance avionics and mechanical design.",
+    description: "Aeronautical engineering portfolio. Bridging mechanical design (CATIA V5) and embedded software (C++/Python) to architect intelligent aerospace systems.",
     images: ["/opengraph-image.png"],
   },
   icons: {
-    icon: "/icon.png",
-    shortcut: "/shortcut-icon.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/models/icone.svg",
+    shortcut: "/models/icone.svg",
+    apple: "/models/icone.svg",
   },
 };
 
