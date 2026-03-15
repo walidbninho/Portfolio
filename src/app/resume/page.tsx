@@ -64,15 +64,15 @@ export default function ResumePage() {
             {/* ITEM 1 */}
             <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8">
               <div className="text-sm font-mono text-muted-foreground pt-1">
-                Summer 2024
+                2023 - 2024
               </div>
               <div>
-                <h3 className="text-lg font-bold">Embedded Systems Intern</h3>
-                <div className="text-sm text-muted-foreground mb-3 font-mono">Company Name • Casablanca</div>
+                <h3 className="text-lg font-bold">ALX Web Development Program</h3>
+                <div className="text-sm text-muted-foreground mb-3 font-mono">ALX, African Leadership Group • Remote</div>
                 <ul className="list-disc list-outside ml-4 space-y-2 text-sm md:text-base text-foreground/80">
-                  <li>Developed low-level C++ drivers for STM32 microcontrollers to interface with IMU sensors.</li>
-                  <li>Designed and soldered a custom PCB for a drone prototype, reducing weight by 15%.</li>
-                  <li>Implemented a real-time Kalman Filter for sensor fusion, improving flight stability.</li>
+                  <li>Collaborated in agile teams to deliver complex technical projects under strict deadlines.</li>
+                  <li>Developed rigorous documentation and version control habits (Git), transferable to industrial quality standards.</li>
+                  <li>Gained proficiency in data structuring and UI logic, enhancing ability to design intuitive control interfaces.</li>
                 </ul>
               </div>
             </div>
@@ -128,23 +128,22 @@ export default function ResumePage() {
           <div className="space-y-8">
             <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8">
               <div className="text-sm font-mono text-muted-foreground pt-1">
-                2022 — 2025
+                2025 - 2028
               </div>
               <div>
-                <h3 className="text-lg font-bold">ENSA Berrechid</h3>
-                <p className="text-base text-foreground/80">Diplôme d'Ingénieur d'État, Génie Aéronautique</p>
-                <p className="text-sm text-muted-foreground mt-1">Focus: Systèmes Embarqués & Mécanique de Vol.</p>
+                <h3 className="text-lg font-bold">ENSA Berrechid, Hassan 1st University</h3>
+                <p className="text-base text-foreground/80">Engineering Degree in Aeronautical Engineering (Embedded Systems)</p>
+                <p className="text-sm text-muted-foreground mt-1">Relevant Coursework: CAD (Catia V5), Signal Processing, Thermodynamics, Heat Transfer, C++, Python. Member of Aero Club ENSAB: Active participation in technical workshops and drone design competitions.</p>
               </div>
             </div>
 
              <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8">
               <div className="text-sm font-mono text-muted-foreground pt-1">
-                2023 — 2024
+                2023 - 2025
               </div>
               <div>
-                <h3 className="text-lg font-bold">ALX Africa</h3>
-                <p className="text-base text-foreground/80">Software Engineering Fellow</p>
-                <p className="text-sm text-muted-foreground mt-1">Holberton School curriculum. C, Python, DevOps.</p>
+                <h3 className="text-lg font-bold">ENSA Berrechid, Hassan 1st University</h3>
+                <p className="text-base text-foreground/80">Preparatory Cycle (Maths, Physics, Engineering Science)</p>
               </div>
             </div>
           </div>
@@ -182,6 +181,36 @@ export default function ResumePage() {
                 <li>Linux / Bash</li>
                 <li>React / Next.js</li>
               </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* --- SECTION: CERTIFICATIONS --- */}
+        <section className="mt-12">
+          <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-muted-foreground mb-8">
+            06 // Certifications
+          </h2>
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8">
+              <div className="text-sm font-mono text-muted-foreground pt-1">
+                Certificate 1
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Python for Everybody Specialization</h3>
+                <p className="text-base text-foreground/80">University of Michigan</p>
+                <p className="text-sm text-muted-foreground mt-1">Data Structures & Algorithms</p>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-8">
+              <div className="text-sm font-mono text-muted-foreground pt-1">
+                Certificate 2
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Meta Front-End Developer Certificate</h3>
+                <p className="text-base text-foreground/80">Meta</p>
+                <p className="text-sm text-muted-foreground mt-1">Project Management & UI Design</p>
+              </div>
             </div>
           </div>
         </section>
