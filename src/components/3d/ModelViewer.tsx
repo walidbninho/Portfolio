@@ -5,6 +5,7 @@ import { useGLTF, Stage, OrbitControls, Html, useProgress, useAnimations, Enviro
 import { Suspense, useEffect, useState } from "react";
 import { Play, Loader2, Box, Camera } from "lucide-react";
 import * as THREE from "three";
+import Image from "next/image";
 
 // Draco Decoder Path (CDN)
 const DRACO_URL = "https://www.gstatic.com/draco/versioned/decoders/1.5.1/";
@@ -81,10 +82,11 @@ export const ModelViewer = ({ modelPath, poster }: ModelViewerProps) => {
             >
                 {/* Background Poster */}
                 {poster && (
-                    <img
+                    <Image
                         src={poster}
                         alt="Model Preview"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
                     />
                 )}
 

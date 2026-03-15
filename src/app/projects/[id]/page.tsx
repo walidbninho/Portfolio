@@ -6,6 +6,7 @@ import { Container } from "@/components/shared/Container";
 import { ModelViewer } from "@/components/3d/ModelViewer";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 export default function ProjectDetailPage() {
@@ -96,10 +97,11 @@ export default function ProjectDetailPage() {
                         ) : (
                             <div className="relative w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]">
                                 {project.image && (
-                                    <img
+                                    <Image
                                         src={project.image}
                                         alt={project.title}
-                                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                                        fill
+                                        className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                                     />
                                 )}
                                 {!project.image && (
